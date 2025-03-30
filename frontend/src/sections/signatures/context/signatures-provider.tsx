@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { getSignaturesByOwner } from "@/actions/sign";
-import { SignaturesState } from "@/actions/types/signatures";
-import { useSetState } from "@/hooks/use-set-state";
-import { useCallback, useMemo } from "react";
-import { SignaturesContext } from "./signatures-context";
+import { getSignaturesByOwner } from '@/actions/sign';
+import { SignaturesState } from '@/actions/types/signatures';
+import { useSetState } from '@/hooks/use-set-state';
+import { useCallback, useMemo } from 'react';
+import { SignaturesContext } from './signatures-context';
 
 type Props = {
   children: React.ReactNode;
@@ -19,23 +19,23 @@ export function SignaturesProvider({ children }: Props) {
   const getSignatures = useCallback(
     async (owner: string) => {
       try {
-        setField("loadingSignatures", true);
+        setField('loadingSignatures', true);
 
         const res = await getSignaturesByOwner(owner);
 
-        setField("signatures", res);
+        setField('signatures', res);
 
-        setField("loadingSignatures", false);
+        setField('loadingSignatures', false);
       } catch (error) {
         console.error(error);
 
-        setField("signatures", null);
+        setField('signatures', null);
 
-        setField("loadingSignatures", false);
+        setField('loadingSignatures', false);
       }
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [setState]
+    [setState],
   );
 
   const memoizedValue = useMemo(
@@ -43,7 +43,7 @@ export function SignaturesProvider({ children }: Props) {
       ...state,
       getSignatures,
     }),
-    [getSignatures, state]
+    [getSignatures, state],
   );
 
   return (

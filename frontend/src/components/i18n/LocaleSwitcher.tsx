@@ -1,8 +1,8 @@
-import { useLocale, useTranslations } from "next-intl";
-import LocaleSwitcherSelect from "./LocaleSwitcherSelect";
+import { useLocale, useTranslations } from 'next-intl';
+import LocaleSwitcherSelect from './LocaleSwitcherSelect';
 
 export default function LocaleSwitcher() {
-  const t = useTranslations("LocaleSwitcher");
+  const t = useTranslations('LocaleSwitcher');
   const locale = useLocale();
 
   return (
@@ -10,15 +10,15 @@ export default function LocaleSwitcher() {
       defaultValue={locale}
       items={[
         {
-          value: "en",
-          label: t("en"),
+          value: 'en',
+          label: t('en'),
         },
         {
-          value: "pt",
-          label: t("pt"),
+          value: 'pt',
+          label: t('pt'),
         },
       ]}
-      label={t("label")}
+      label={t('label')}
     />
   );
 }

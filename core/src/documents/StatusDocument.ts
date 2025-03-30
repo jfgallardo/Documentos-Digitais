@@ -1,4 +1,4 @@
 export enum StatusDocument {
-  Pending = "pending",
-  Signed = "signed",
+  Pending = 'pending',
+  Signed = 'signed',
 }

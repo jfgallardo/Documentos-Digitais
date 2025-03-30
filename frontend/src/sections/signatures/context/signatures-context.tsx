@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { SignaturesContextValue } from "@/actions/types/signatures";
-import { createContext } from "react";
+import { SignaturesContextValue } from '@/actions/types/signatures';
+import { createContext } from 'react';
 
 // ----------------------------------------------------------------------
 

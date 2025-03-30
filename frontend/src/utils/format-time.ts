@@ -13,7 +13,13 @@ dayjs.extend(relativeTime);
 
 // ----------------------------------------------------------------------
 
-export type DatePickerFormat = Dayjs | Date | string | number | null | undefined;
+export type DatePickerFormat =
+  | Dayjs
+  | Date
+  | string
+  | number
+  | null
+  | undefined;
 
 /**
  * Docs: https://day.js.org/docs/en/display/format
@@ -45,7 +51,10 @@ export function today(format?: string) {
 
 // ----------------------------------------------------------------------
 
-export function toUTC(date: DatePickerFormat, format: string = formatStr.toApi.UTC) {
+export function toUTC(
+  date: DatePickerFormat,
+  format: string = formatStr.toApi.UTC,
+) {
   return dayjs.utc(date).format(format);
 }
 
@@ -72,7 +81,9 @@ export function fDateTime(date: DatePickerFormat, format?: string) {
 
   const isValid = dayjs(date).isValid();
 
-  return isValid ? dayjs(date).format(format ?? formatStr.dateTime) : 'Invalid time value';
+  return isValid
+    ? dayjs(date).format(format ?? formatStr.dateTime)
+    : 'Invalid time value';
 }
 
 // ----------------------------------------------------------------------
@@ -86,7 +97,9 @@ export function fDate(date: DatePickerFormat, format?: string) {
 
   const isValid = dayjs(date).isValid();
 
-  return isValid ? dayjs(date).format(format ?? formatStr.split.date) : 'Invalid time value';
+  return isValid
+    ? dayjs(date).format(format ?? formatStr.split.date)
+    : 'Invalid time value';
 }
 
 // ----------------------------------------------------------------------
@@ -100,7 +113,9 @@ export function fTime(date: DatePickerFormat, format?: string) {
 
   const isValid = dayjs(date).isValid();
 
-  return isValid ? dayjs(date).format(format ?? formatStr.time) : 'Invalid time value';
+  return isValid
+    ? dayjs(date).format(format ?? formatStr.time)
+    : 'Invalid time value';
 }
 
 // ----------------------------------------------------------------------
@@ -138,7 +153,7 @@ export function fToNow(date: DatePickerFormat) {
 export function fIsBetween(
   inputDate: DatePickerFormat,
   startDate: DatePickerFormat,
-  endDate: DatePickerFormat
+  endDate: DatePickerFormat,
 ) {
   if (!inputDate || !startDate || !endDate) {
     return false;
@@ -149,7 +164,10 @@ export function fIsBetween(
   const formattedEndDate = fTimestamp(endDate);
 
   if (formattedInputDate && formattedStartDate && formattedEndDate) {
-    return formattedInputDate >= formattedStartDate && formattedInputDate <= formattedEndDate;
+    return (
+      formattedInputDate >= formattedStartDate &&
+      formattedInputDate <= formattedEndDate
+    );
   }
 
   return false;
@@ -159,7 +177,10 @@ export function fIsBetween(
 
 /** output: boolean
  */
-export function fIsAfter(startDate: DatePickerFormat, endDate: DatePickerFormat) {
+export function fIsAfter(
+  startDate: DatePickerFormat,
+  endDate: DatePickerFormat,
+) {
   return dayjs(startDate).isAfter(endDate);
 }
 
@@ -170,7 +191,7 @@ export function fIsAfter(startDate: DatePickerFormat, endDate: DatePickerFormat)
 export function fIsSame(
   startDate: DatePickerFormat,
   endDate: DatePickerFormat,
-  units?: OpUnitType
+  units?: OpUnitType,
 ) {
   if (!startDate || !endDate) {
     return false;
@@ -196,7 +217,7 @@ export function fIsSame(
 export function fDateRangeShortLabel(
   startDate: DatePickerFormat,
   endDate: DatePickerFormat,
-  initial?: boolean
+  initial?: boolean,
 ) {
   const isValid = dayjs(startDate).isValid() && dayjs(endDate).isValid();
 
@@ -260,7 +281,7 @@ export function fAdd({
         minutes,
         seconds,
         milliseconds,
-      })
+      }),
     )
     .format();
 
@@ -288,7 +309,7 @@ export function fSub({
         minutes,
         seconds,
         milliseconds,
-      })
+      }),
     )
     .format();
 

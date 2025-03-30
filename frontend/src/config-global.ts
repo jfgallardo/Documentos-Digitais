@@ -1,5 +1,5 @@
-import packageJson from "../package.json";
-import { paths } from "./routes/paths";
+import packageJson from '../package.json';
+import { paths } from './routes/paths';
 
 // ----------------------------------------------------------------------
 
@@ -21,13 +21,13 @@ export type ConfigValue = {
 
 export const CONFIG: ConfigValue = {
   site: {
-    name: "SignEase",
-    serverUrl: process.env.NEXT_PUBLIC_SERVER_URL ?? "",
+    name: 'SignEase',
+    serverUrl: process.env.NEXT_PUBLIC_SERVER_URL ?? '',
     version: packageJson.version,
-    baseUrl: process.env.NEXT_PUBLIC_BASE_URL ?? "",
+    baseUrl: process.env.NEXT_PUBLIC_BASE_URL ?? '',
   },
   auth: {
-    method: "jwt",
+    method: 'jwt',
     skip: false,
     redirectPath: paths.dashboard.root,
   },

@@ -1,4 +1,4 @@
-import { Home, Settings, Signature } from "lucide-react";
+import { Home, Settings, Signature } from 'lucide-react';
 
 import {
   Sidebar,
@@ -9,32 +9,32 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar";
-import { CONFIG } from "@/config-global";
-import { useTranslations } from "next-intl";
+} from '@/components/ui/sidebar';
+import { CONFIG } from '@/config-global';
+import { useTranslations } from 'next-intl';
 
 export function AppSidebar() {
-  const t = useTranslations("AppSidebar");
+  const t = useTranslations('AppSidebar');
 
   const items = [
     {
-      title: t("dashboard"),
-      url: "/dashboard",
+      title: t('dashboard'),
+      url: '/dashboard',
       icon: Home,
     },
     {
-      title: t("signatures"),
-      url: "/signatures",
+      title: t('signatures'),
+      url: '/signatures',
       icon: Signature,
     },
     {
-      title: t("settings"),
-      url: "#",
+      title: t('settings'),
+      url: '#',
       icon: Settings,
     },
   ];
   return (
-    <Sidebar variant="floating" collapsible="icon">
+    <Sidebar variant='floating' collapsible='icon'>
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel>{CONFIG.site.name}</SidebarGroupLabel>

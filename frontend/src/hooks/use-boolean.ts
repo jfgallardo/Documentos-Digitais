@@ -35,7 +35,7 @@ export function useBoolean(defaultValue: boolean = false): UseBooleanReturn {
       onToggle,
       setValue,
     }),
-    [value, onTrue, onFalse, onToggle, setValue]
+    [value, onTrue, onFalse, onToggle, setValue],
   );
 
   return memoizedValue;

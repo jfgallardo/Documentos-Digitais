@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogClose,
@@ -8,9 +8,9 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { IconEraser, IconScan, IconSignature } from "@tabler/icons-react";
+} from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { IconEraser, IconScan, IconSignature } from '@tabler/icons-react';
 import {
   Form,
   FormControl,
@@ -19,24 +19,24 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "../../components/ui/form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { Document } from "@core";
-import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
-import { signDocument } from "@/actions/sign";
-import { useAuthContext } from "@/auth/hooks";
-import { useSignaturesContext } from "../signatures/hook/use-signatures-context";
+} from '../../components/ui/form';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import { Document } from '@core';
+import Image from 'next/image';
+import { useEffect, useRef, useState } from 'react';
+import { signDocument } from '@/actions/sign';
+import { useAuthContext } from '@/auth/hooks';
+import { useSignaturesContext } from '../signatures/hook/use-signatures-context';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { useTranslations } from "next-intl";
+} from '@/components/ui/select';
+import { useTranslations } from 'next-intl';
 
 type Props = {
   onSign: () => void;
@@ -44,14 +44,14 @@ type Props = {
 };
 
 enum SignType {
-  sign = "sign",
-  file = "file",
+  sign = 'sign',
+  file = 'file',
 }
 
 export function SignDocument({ onSign, document }: Props) {
   const { user } = useAuthContext();
   const { signatures, getSignatures } = useSignaturesContext();
-  const t = useTranslations("SignDocument");
+  const t = useTranslations('SignDocument');
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
@@ -76,7 +76,7 @@ export function SignDocument({ onSign, document }: Props) {
     .object({
       file: z.custom<File | string | null>().transform((data) => {
         const hasFile =
-          data instanceof File || (typeof data === "string" && !!data.length);
+          data instanceof File || (typeof data === 'string' && !!data.length);
 
         if (!hasFile) {
           return null;
@@ -93,31 +93,31 @@ export function SignDocument({ onSign, document }: Props) {
         return hasFile !== hasSign;
       },
       {
-        message: t("message_validation"),
-        path: ["file"],
-      }
+        message: t('message_validation'),
+        path: ['file'],
+      },
     );
 
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
       file: null,
-      sign: "",
+      sign: '',
     },
   });
 
   const { setValue } = form;
 
-  const fileValue = form.watch("file");
-  const signValue = form.watch("sign");
+  const fileValue = form.watch('file');
+  const signValue = form.watch('sign');
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     const formData = new FormData();
     const file: File = values.file as File;
 
-    formData.append("file", file);
-    formData.append("documentId", document.id);
-    formData.append("signerId", user?.id as string);
+    formData.append('file', file);
+    formData.append('documentId', document.id);
+    formData.append('signerId', user?.id as string);
 
     await signDocument(formData, values.sign ? values.sign : undefined);
     onSign();
@@ -126,35 +126,35 @@ export function SignDocument({ onSign, document }: Props) {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files ? e.target.files[0] : null;
     setPreview(URL.createObjectURL(file as File));
-    setValue("file", file, { shouldValidate: true });
+    setValue('file', file, { shouldValidate: true });
   };
 
   const onReset = (item: SignType) => {
-    setValue(item, "", { shouldValidate: true });
+    setValue(item, '', { shouldValidate: true });
     setPreview(null);
   };
 
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline" size="sm" className="cursor-pointer">
+        <Button variant='outline' size='sm' className='cursor-pointer'>
           <IconSignature />
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-md">
+      <DialogContent className='sm:max-w-md'>
         <DialogHeader>
           <DialogTitle>{document.title}</DialogTitle>
-          <DialogDescription>{t("description")}</DialogDescription>
+          <DialogDescription>{t('description')}</DialogDescription>
         </DialogHeader>
 
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+          <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
             {!signValue && (
               <FormField
                 control={form.control}
-                name="file"
+                name='file'
                 render={({ field }) => (
-                  <div className="flex items-center justify-between gap-2">
+                  <div className='flex items-center justify-between gap-2'>
                     <FormItem>
                       <FormControl>
                         <div>
@@ -162,18 +162,18 @@ export function SignDocument({ onSign, document }: Props) {
                             ref={fileInputRef}
                             key={
                               field.value
-                                ? "file-with-value"
-                                : "file-without-value"
+                                ? 'file-with-value'
+                                : 'file-without-value'
                             }
-                            id="file"
-                            type="file"
-                            accept=".jpg,.jpeg,.png"
+                            id='file'
+                            type='file'
+                            accept='.jpg,.jpeg,.png'
                             onChange={handleFileChange}
-                            className="hidden"
+                            className='hidden'
                           />
-                          <Button onClick={handleButtonClick} type="button">
+                          <Button onClick={handleButtonClick} type='button'>
                             <IconScan />
-                            {t("file")}
+                            {t('file')}
                           </Button>
                         </div>
                       </FormControl>
@@ -182,7 +182,7 @@ export function SignDocument({ onSign, document }: Props) {
 
                     {field.value && (
                       <IconEraser
-                        className="cursor-pointer"
+                        className='cursor-pointer'
                         onClick={() => onReset(field.name as SignType)}
                       />
                     )}
@@ -197,19 +197,19 @@ export function SignDocument({ onSign, document }: Props) {
                   <div>
                     <FormField
                       control={form.control}
-                      name="sign"
+                      name='sign'
                       render={({ field }) => (
-                        <div className="flex gap-2">
+                        <div className='flex gap-2'>
                           <FormItem>
-                            <FormLabel>{t("register_signature")}</FormLabel>
+                            <FormLabel>{t('register_signature')}</FormLabel>
                             <Select
                               onValueChange={field.onChange}
-                              value={field.value || ""}
+                              value={field.value || ''}
                             >
                               <FormControl>
                                 <SelectTrigger>
                                   <SelectValue
-                                    placeholder={t("placeholder_select")}
+                                    placeholder={t('placeholder_select')}
                                   />
                                 </SelectTrigger>
                               </FormControl>
@@ -225,13 +225,13 @@ export function SignDocument({ onSign, document }: Props) {
                               </SelectContent>
                             </Select>
                             <FormDescription>
-                              {t("description_signature")}
+                              {t('description_signature')}
                             </FormDescription>
                             <FormMessage />
                           </FormItem>
                           {field.value && (
                             <IconEraser
-                              className="cursor-pointer"
+                              className='cursor-pointer'
                               onClick={() => onReset(field.name as SignType)}
                             />
                           )}
@@ -244,20 +244,20 @@ export function SignDocument({ onSign, document }: Props) {
             )}
 
             {preview && (
-              <div className="flex items-center justify-center border rounded-lg p-2 bg-white shadow-lg">
-                <Image src={preview} alt="Preview" width={220} height={220} />
+              <div className='flex items-center justify-center border rounded-lg p-2 bg-white shadow-lg'>
+                <Image src={preview} alt='Preview' width={220} height={220} />
               </div>
             )}
 
             <DialogFooter>
-              <div className="flex w-full justify-end gap-2">
+              <div className='flex w-full justify-end gap-2'>
                 <DialogClose asChild>
-                  <Button type="button" variant="default">
-                    {t("button_close")}
+                  <Button type='button' variant='default'>
+                    {t('button_close')}
                   </Button>
                 </DialogClose>
-                <Button type="submit" variant="outline">
-                  {t("button_sign")}
+                <Button type='submit' variant='outline'>
+                  {t('button_sign')}
                 </Button>
               </div>
             </DialogFooter>

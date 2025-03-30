@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { getDocumentsByOwner } from "@/actions/dashboard";
-import { DashboardState } from "@/actions/types/dashboard";
-import { useSetState } from "@/hooks/use-set-state";
-import { useCallback, useMemo } from "react";
-import { DashboardContext } from "./dashboard-context";
+import { getDocumentsByOwner } from '@/actions/dashboard';
+import { DashboardState } from '@/actions/types/dashboard';
+import { useSetState } from '@/hooks/use-set-state';
+import { useCallback, useMemo } from 'react';
+import { DashboardContext } from './dashboard-context';
 
 // ----------------------------------------------------------------------
 
@@ -21,23 +21,23 @@ export function DashboardProvider({ children }: Props) {
   const getDocuments = useCallback(
     async (owner: string) => {
       try {
-        setField("loadingDocuments", true);
+        setField('loadingDocuments', true);
 
         const res = await getDocumentsByOwner(owner);
 
-        setField("documents", res);
+        setField('documents', res);
 
-        setField("loadingDocuments", false);
+        setField('loadingDocuments', false);
       } catch (error) {
         console.error(error);
 
-        setField("documents", null);
+        setField('documents', null);
 
-        setField("loadingDocuments", false);
+        setField('loadingDocuments', false);
       }
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [setState]
+    [setState],
   );
 
   // ----------------------------------------------------------------------
@@ -47,7 +47,7 @@ export function DashboardProvider({ children }: Props) {
       ...state,
       getDocuments,
     }),
-    [getDocuments, state]
+    [getDocuments, state],
   );
 
   return (

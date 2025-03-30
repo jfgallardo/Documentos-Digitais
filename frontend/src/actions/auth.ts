@@ -1,6 +1,6 @@
-import { ResponseSession } from "@/auth/types";
-import axios, { endpoints } from "@/utils/axios";
-import { User } from "@core";
+import { ResponseSession } from '@/auth/types';
+import axios, { endpoints } from '@/utils/axios';
+import { User } from '@core';
 
 export const signUp = async (body: User): Promise<{ message: string }> => {
   try {
@@ -8,7 +8,7 @@ export const signUp = async (body: User): Promise<{ message: string }> => {
 
     return res.data;
   } catch (error) {
-    console.error("Error sign up:", error);
+    console.error('Error sign up:', error);
     throw error;
   }
 };
@@ -19,7 +19,7 @@ export const getProfile = async (): Promise<ResponseSession> => {
 
     return res.data;
   } catch (error) {
-    console.error("Error get profile:", error);
+    console.error('Error get profile:', error);
     throw error;
   }
 };

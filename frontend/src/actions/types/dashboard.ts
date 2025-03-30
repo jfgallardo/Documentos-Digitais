@@ -1,4 +1,4 @@
-import { Document } from "@core";
+import { Document } from '@core';
 
 export type DashboardState = {
   documents: Document[] | null;

@@ -1,4 +1,4 @@
-import PublicLayout from "@/layouts/public/layout";
+import PublicLayout from '@/layouts/public/layout';
 
 type Props = {
   children: React.ReactNode;

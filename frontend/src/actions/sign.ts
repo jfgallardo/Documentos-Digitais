@@ -1,9 +1,9 @@
-import axios, { endpoints } from "@/utils/axios";
-import { Signature } from "@core";
+import axios, { endpoints } from '@/utils/axios';
+import { Signature } from '@core';
 
 export const signDocument = async (
   formData: FormData,
-  signatureId?: string
+  signatureId?: string,
 ): Promise<Signature> => {
   try {
     let url = endpoints.signatures.create;
@@ -14,11 +14,11 @@ export const signDocument = async (
 
     const res = await axios.post(url, formData);
 
-    console.log("res", res);
+    console.log('res', res);
 
     return res.data;
   } catch (error) {
-    console.error("Error upload document:", error);
+    console.error('Error upload document:', error);
     throw error;
   }
 };
@@ -29,7 +29,7 @@ export const getSignaturesByOwner = async (owner: string) => {
 
     return res.data;
   } catch (error) {
-    console.error("Error get signatures:", error);
+    console.error('Error get signatures:', error);
     throw error;
   }
 };

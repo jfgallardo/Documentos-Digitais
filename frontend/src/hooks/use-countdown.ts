@@ -34,11 +34,17 @@ export function useCountdownDate(date: Date): UseCountdownDateReturn {
     const getDays = Math.floor(distanceToNow / (1000 * 60 * 60 * 24));
 
     const getHours =
-      `0${Math.floor((distanceToNow % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))}`.slice(-2);
+      `0${Math.floor((distanceToNow % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))}`.slice(
+        -2,
+      );
 
-    const getMinutes = `0${Math.floor((distanceToNow % (1000 * 60 * 60)) / (1000 * 60))}`.slice(-2);
+    const getMinutes =
+      `0${Math.floor((distanceToNow % (1000 * 60 * 60)) / (1000 * 60))}`.slice(
+        -2,
+      );
 
-    const getSeconds = `0${Math.floor((distanceToNow % (1000 * 60)) / 1000)}`.slice(-2);
+    const getSeconds =
+      `0${Math.floor((distanceToNow % (1000 * 60)) / 1000)}`.slice(-2);
 
     setCountdown({
       days: getDays < 10 ? `0${getDays}` : `${getDays}`,
@@ -63,7 +69,9 @@ export type UseCountdownSecondsReturn = {
   setCountdown: React.Dispatch<React.SetStateAction<number>>;
 };
 
-export function useCountdownSeconds(initCountdown: number): UseCountdownSecondsReturn {
+export function useCountdownSeconds(
+  initCountdown: number,
+): UseCountdownSecondsReturn {
   const [countdown, setCountdown] = useState(initCountdown);
 
   const remainingSecondsRef = useRef(countdown);

@@ -1,5 +1,5 @@
-import { Document } from "@core";
-import axios, { endpoints } from "@/utils/axios";
+import { Document } from '@core';
+import axios, { endpoints } from '@/utils/axios';
 
 export const uploadDocument = async (formData: FormData): Promise<Document> => {
   try {
@@ -7,7 +7,7 @@ export const uploadDocument = async (formData: FormData): Promise<Document> => {
 
     return res.data;
   } catch (error) {
-    console.error("Error upload document:", error);
+    console.error('Error upload document:', error);
     throw error;
   }
 };
@@ -18,7 +18,7 @@ export const deleteDocument = async (id: string): Promise<void> => {
 
     return res.data;
   } catch (error) {
-    console.error("Error delete document:", error);
+    console.error('Error delete document:', error);
     throw error;
   }
 };
@@ -26,12 +26,12 @@ export const deleteDocument = async (id: string): Promise<void> => {
 export const downloadDocument = async (id: string): Promise<Blob> => {
   try {
     const res = await axios.get(endpoints.documents.download(id), {
-      responseType: "blob",
+      responseType: 'blob',
     });
 
     return res.data;
   } catch (error) {
-    console.error("Error download document:", error);
+    console.error('Error download document:', error);
     throw error;
   }
 };

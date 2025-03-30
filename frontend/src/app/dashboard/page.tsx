@@ -1,5 +1,5 @@
-import { CONFIG } from "@/config-global";
-import { DashboardView } from "@/sections/dashboard/view/dashboard-view";
+import { CONFIG } from '@/config-global';
+import { DashboardView } from '@/sections/dashboard/view/dashboard-view';
 
 // ----------------------------------------------------------------------
 

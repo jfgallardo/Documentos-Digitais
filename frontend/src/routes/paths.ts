@@ -1,9 +1,9 @@
 // ----------------------------------------------------------------------
 
 const ROOTS = {
-  AUTH: "/auth",
-  DASHBOARD: "/dashboard",
-  PROFILE: "/profile",
+  AUTH: '/auth',
+  DASHBOARD: '/dashboard',
+  PROFILE: '/profile',
 };
 
 // ----------------------------------------------------------------------

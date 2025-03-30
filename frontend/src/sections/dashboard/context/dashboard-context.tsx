@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { DashboardContextValue } from "@/actions/types/dashboard";
-import { createContext } from "react";
+import { DashboardContextValue } from '@/actions/types/dashboard';
+import { createContext } from 'react';
 
 // ----------------------------------------------------------------------
 

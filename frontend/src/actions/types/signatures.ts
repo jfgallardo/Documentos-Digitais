@@ -1,4 +1,4 @@
-import { Signature } from "@core";
+import { Signature } from '@core';
 
 export type SignaturesState = {
   signatures: Signature[] | null;

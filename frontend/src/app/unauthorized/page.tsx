@@ -1,5 +1,5 @@
-import { CONFIG } from "@/config-global";
-import Error401 from "@/sections/error/401-view";
+import { CONFIG } from '@/config-global';
+import Error401 from '@/sections/error/401-view';
 
 // ----------------------------------------------------------------------
 

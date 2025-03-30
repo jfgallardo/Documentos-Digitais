@@ -8,9 +8,9 @@ export function isEqual(a: unknown, b: unknown): boolean {
   }
 
   if (
-    typeof a === "string" ||
-    typeof a === "number" ||
-    typeof a === "boolean"
+    typeof a === 'string' ||
+    typeof a === 'number' ||
+    typeof a === 'boolean'
   ) {
     return a === b;
   }
@@ -23,7 +23,7 @@ export function isEqual(a: unknown, b: unknown): boolean {
     return a.every((item, index) => isEqual(item, b[index]));
   }
 
-  if (typeof a === "object" && typeof b === "object") {
+  if (typeof a === 'object' && typeof b === 'object') {
     const keysA = Object.keys(a as object);
     const keysB = Object.keys(b as object);
 
@@ -34,8 +34,8 @@ export function isEqual(a: unknown, b: unknown): boolean {
     return keysA.every((key) =>
       isEqual(
         (a as Record<string, unknown>)[key],
-        (b as Record<string, unknown>)[key]
-      )
+        (b as Record<string, unknown>)[key],
+      ),
     );
   }
 
@@ -46,6 +46,6 @@ export function isEqual(a: unknown, b: unknown): boolean {
 
 export const clearHtml = (html: string) =>
   html
-    .replace(/<[^>]*>?/gm, " ")
-    .replaceAll("  ", " ")
+    .replace(/<[^>]*>?/gm, ' ')
+    .replaceAll('  ', ' ')
     .trim();

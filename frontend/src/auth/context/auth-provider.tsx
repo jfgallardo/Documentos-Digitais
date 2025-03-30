@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { useSetState } from "@/hooks/use-set-state";
-import { AuthState } from "../types";
-import { useCallback, useMemo } from "react";
-import { getProfile } from "@/actions/auth";
-import { AuthContext } from "./auth-context";
+import { useSetState } from '@/hooks/use-set-state';
+import { AuthState } from '../types';
+import { useCallback, useMemo } from 'react';
+import { getProfile } from '@/actions/auth';
+import { AuthContext } from './auth-context';
 
 type Props = {
   children: React.ReactNode;
@@ -20,7 +20,7 @@ export function AuthProvider({ children }: Props) {
     try {
       const res = await getProfile();
 
-      setField("user", res);
+      setField('user', res);
     } catch (error) {
       console.error(error);
     }
@@ -32,7 +32,7 @@ export function AuthProvider({ children }: Props) {
       ...state,
       checkUserSession,
     }),
-    [state, checkUserSession]
+    [state, checkUserSession],
   );
 
   return (

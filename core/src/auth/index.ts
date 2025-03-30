@@ -1,3 +1,3 @@
-import AuthResponse from "./AuthResponse";
+import AuthResponse from './AuthResponse';
 
 export type { AuthResponse };

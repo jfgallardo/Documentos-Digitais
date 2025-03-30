@@ -1,6 +1,6 @@
-import { useMemo, useState, useCallback } from "react";
+import { useMemo, useState, useCallback } from 'react';
 
-import { isEqual } from "@/utils/helper";
+import { isEqual } from '@/utils/helper';
 
 // ----------------------------------------------------------------------
 
@@ -25,7 +25,7 @@ export function useSetState<T>(initialState: T): UseSetStateReturn<T> {
     (name: keyof T, updateValue: T[keyof T]) => {
       setState({ [name]: updateValue } as Partial<T>);
     },
-    [setState]
+    [setState],
   );
 
   const onResetState = useCallback(() => {
@@ -40,7 +40,7 @@ export function useSetState<T>(initialState: T): UseSetStateReturn<T> {
       onResetState,
       canReset,
     }),
-    [canReset, onResetState, setField, setState, state]
+    [canReset, onResetState, setField, setState, state],
   );
 
   return memoizedValue;

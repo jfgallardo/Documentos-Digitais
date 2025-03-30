@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { useContext } from "react";
-import { SignaturesContext } from "../context";
+import { useContext } from 'react';
+import { SignaturesContext } from '../context';
 
 // ----------------------------------------------------------------------
 
@@ -10,7 +10,7 @@ export function useSignaturesContext() {
 
   if (!context) {
     throw new Error(
-      "useSignaturesContext: Context must be used inside SignaturesProvider"
+      'useSignaturesContext: Context must be used inside SignaturesProvider',
     );
   }
 

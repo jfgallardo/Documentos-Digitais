@@ -1,5 +1,5 @@
-import { CONFIG } from "@/config-global";
-import SignaturesView from "@/sections/signatures/view/signatures-view";
+import { CONFIG } from '@/config-global';
+import SignaturesView from '@/sections/signatures/view/signatures-view';
 
 // ----------------------------------------------------------------------
 

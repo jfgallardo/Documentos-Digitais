@@ -1,4 +1,4 @@
-import { StatusDocument } from "./StatusDocument";
+import { StatusDocument } from './StatusDocument';
 
 export default interface Document {
   id: string;
