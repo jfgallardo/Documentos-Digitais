@@ -1,0 +1,8 @@
+{
+  "name": "core",
+  "version": "1.0.0",
+  "description": "Core Documents Digitais",
+  "main": "main.ts",
+  "author": "Julio Gallardo <jfgallardo95@gmailcom>",
+  "license": "MIT"
+}

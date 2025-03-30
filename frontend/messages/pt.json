@@ -1,0 +1,77 @@
+{
+  "ErrorPage": {
+    "title": "Página não encontrada!",
+    "description": "A página que você está procurando não existe.",
+    "button": "Voltar ao início"
+  },
+  "Error401": {
+    "title": "401 - Não autorizado!",
+    "description": "Você não está autorizado a acessar esta página.",
+    "button": "Ir para o Login",
+    "redirect": "Redirecionando você para a página de login..."
+  },
+  "LocaleSwitcher": {
+    "label": "Idioma",
+    "en": "Inglês",
+    "pt": "Português"
+  },
+  "AppSidebar": {
+    "dashboard": "Painel",
+    "signatures": "Assinaturas",
+    "settings": "Configurações"
+  },
+  "SignOut": {
+    "label": "Sair"
+  },
+  "DashboardView": {
+    "title": "Listagem de documentos"
+  },
+  "CreateDocument": {
+    "title": "Carregar novo documento",
+    "file": "Arquivo",
+    "description": "Selecione e carregue o arquivo PDF",
+    "button_close": "Fechar",
+    "button_upload": "Carregar"
+  },
+  "DeleteDocument": {
+    "warning": "Aviso",
+    "message": "Você está prestes a excluir este documento. Esta ação não pode ser desfeita.",
+    "button_delete": "Excluir",
+    "button_cancel": "Cancelar"
+  },
+  "ListDocuments": {
+    "headers": {
+      "title": "Nome",
+      "status": "Status",
+      "created": "Criado",
+      "updated": "Atualizado",
+      "actions": "Ações"
+    },
+    "no_documents": "Não há documentos disponíveis no momento.",
+    "status": {
+      "pending": "Pendente",
+      "signed": "Assinado"
+    }
+  },
+  "SignDocument": {
+    "description": "Envie uma foto da sua assinatura para concluir o processo.",
+    "file": "Assinatura digitalizada",
+    "register_signature": "Assinaturas registradas",
+    "description_signature": "Você pode assinar o documento com uma das assinaturas registradas.",
+    "button_sign": "Assinar",
+    "button_close": "Fechar",
+    "message_validation": "Você deve fornecer um arquivo ou uma assinatura, mas não ambos.",
+    "placeholder_select": "Selecione para assinar com uma das assinaturas registradas"
+  },
+  "SignaturesView": {
+    "title": "Assinaturas registradas"
+  },
+  "ListSignatures": {
+    "headers": {
+      "title": "Nome",
+      "signed_documents": "Documentos assinados",
+      "signed_at": "Assinado em"
+    },
+    "no_signatures": "Não há assinaturas disponíveis no momento."
+  }
+}

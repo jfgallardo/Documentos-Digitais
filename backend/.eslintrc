@@ -1,0 +1,5 @@
+{
+  "rules": {
+    ", // Desactiva la regla de retorno inseguro
+  },
+}

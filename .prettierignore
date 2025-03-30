@@ -1,0 +1,15 @@
+# Ignorar node_modules en backend y frontend
+node_modules
+
+# Ignorar archivos de compilación (dist, build)
+dist
+build
+
+# Ignorar carpetas de Next.js (frontend) y NestJS (backend)
+frontend/.next
+backend/dist
+
+# Ignorar archivos minificados, logs, etc.
+*.min.js
+*.bundle.js
+*.log

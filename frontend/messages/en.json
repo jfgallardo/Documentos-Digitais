@@ -1,0 +1,77 @@
+{
+  "ErrorPage": {
+    "title": "Page not found!",
+    "description": "The page you are looking for does not exist.",
+    "button": "Back to home"
+  },
+  "Error401": {
+    "title": "401 Unauthorized!",
+    "description": "You are not authorized to access this page.",
+    "button": "Go to Login",
+    "redirect": "Redirecting you to the login page..."
+  },
+  "LocaleSwitcher": {
+    "label": "Language",
+    "en": "English",
+    "pt": "Portuguese"
+  },
+  "AppSidebar": {
+    "dashboard": "Dashboard",
+    "signatures": "Signatures",
+    "settings": "Settings"
+  },
+  "SignOut": {
+    "label": "Sign Out"
+  },
+  "DashboardView": {
+    "title": "Document listing"
+  },
+  "CreateDocument": {
+    "title": "Upload new document",
+    "file": "File",
+    "description": "Select and upload the PDF file",
+    "button_close": "Close",
+    "button_upload": "Upload"
+  },
+  "DeleteDocument": {
+    "warning": "Warning",
+    "message": "You are about to delete this document. This action cannot be undone.",
+    "button_delete": "Delete",
+    "button_cancel": "Cancel"
+  },
+  "ListDocuments": {
+    "headers": {
+      "title": "Name",
+      "status": "Status",
+      "created": "Created",
+      "updated": "Updated",
+      "actions": "Actions"
+    },
+    "no_documents": "There are no documents available at this time.",
+    "status": {
+      "pending": "Pending",
+      "signed": "Signed"
+    }
+  },
+  "SignDocument": {
+    "description": "Upload a photo of your signature to complete the process.",
+    "file": "Digitized signature",
+    "register_signature": "Registered signatures",
+    "description_signature": "You can sign the document with one of the signatures registered by you.",
+    "button_sign": "Sign",
+    "button_close": "Close",
+    "message_validation": "You must provide either a file or a sign, but not both.",
+    "placeholder_select": "Select to sign with one of the registered ones"
+  },
+  "SignaturesView": {
+    "title": "Registered signatures"
+  },
+  "ListSignatures": {
+    "headers": {
+      "title": "Name",
+      "signed_documents": "Signed documents",
+      "signed_at": "Signed at"
+    },
+    "no_signatures": "There are no signatures available at this time."
+  }
+}
