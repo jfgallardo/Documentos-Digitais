@@ -77,15 +77,21 @@ export class DocumentsProvider {
     }
 
     if (document.signature) {
-      if (
-        document.signature.signatureUrl &&
-        fs.existsSync(document.signature.signatureUrl)
-      ) {
-        fs.unlinkSync(document.signature.signatureUrl);
-      }
-      await this.prisma.signature.delete({
-        where: { id: document.signature.id },
+      const signatureUsageCount = await this.prisma.document.count({
+        where: { signatureId: document.signature.id },
       });
+
+      if (signatureUsageCount <= 1) {
+        if (
+          document.signature.signatureUrl &&
+          fs.existsSync(document.signature.signatureUrl)
+        ) {
+          fs.unlinkSync(document.signature.signatureUrl);
+        }
+        await this.prisma.signature.delete({
+          where: { id: document.signature.id },
+        });
+      }
     }
 
     return (await this.prisma.document.delete({

@@ -15,7 +15,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       },
       authorize: async (
         credentials,
-      ): Promise<{ name: string; accessToken: string }> => {
+      ): Promise<{ email: string; accessToken: string }> => {
         try {
           const validatedCredentials =
             await loginSchema.parseAsync(credentials);
@@ -27,7 +27,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           const { access_token } = response.data;
 
           return {
-            name: validatedCredentials.email,
+            email: validatedCredentials.email,
             accessToken: access_token,
           };
 
@@ -69,6 +69,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       return token;
     },
     async signIn({ user, account }) {
+      console.log('user => >>>>>>>>>>>>>>>>>>', user);
+
       if (!user?.email) return false;
 
       try {

@@ -37,7 +37,8 @@
     "warning": "Warning",
     "message": "You are about to delete this document. This action cannot be undone.",
     "button_delete": "Delete",
-    "button_cancel": "Cancel"
+    "button_cancel": "Cancel",
+    "tooltip": "Delete document"
   },
   "ListDocuments": {
     "headers": {
@@ -51,7 +52,8 @@
     "status": {
       "pending": "Pending",
       "signed": "Signed"
-    }
+    },
+    "tooltip": "Download document"
   },
   "SignDocument": {
     "description": "Upload a photo of your signature to complete the process.",
@@ -61,10 +63,13 @@
     "button_sign": "Sign",
     "button_close": "Close",
     "message_validation": "You must provide either a file or a sign, but not both.",
-    "placeholder_select": "Select to sign with one of the registered ones"
+    "placeholder_select": "Select to sign with one of the registered ones",
+    "tooltip": "Sign document"
   },
   "SignaturesView": {
-    "title": "Registered signatures"
+    "title": "Registered signatures",
+    "title_alert": "Heads up!",
+    "title_description": "Here you can find all the signatures already registered. The signatures are automatically registered when you sign a document."
   },
   "ListSignatures": {
     "headers": {

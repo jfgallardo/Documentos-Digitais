@@ -15,6 +15,7 @@ import { Badge } from '@/components/ui/badge';
 import { downloadDocument } from '@/actions/documents';
 import { DeleteDocument } from './delete-document';
 import { useTranslations } from 'next-intl';
+import AppTooltip from '@/components/shared/app-tooltip';
 
 type Props = {
   documents: Document[] | null;
@@ -103,14 +104,16 @@ export default function ListDocuments({ documents, onReset }: Props) {
                         }}
                       />
                     )}
-                    <Button
-                      variant='outline'
-                      size='sm'
-                      className='cursor-pointer'
-                      onClick={() => handleDownload(document.id)}
-                    >
-                      <IconDownload />
-                    </Button>
+                    <AppTooltip text={t('tooltip')}>
+                      <Button
+                        variant='outline'
+                        size='sm'
+                        className='cursor-pointer'
+                        onClick={() => handleDownload(document.id)}
+                      >
+                        <IconDownload />
+                      </Button>
+                    </AppTooltip>
                   </TableCell>
                 </TableRow>
               ))}

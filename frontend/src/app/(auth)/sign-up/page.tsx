@@ -44,6 +44,8 @@ export default function SignUp() {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    console.log('values FRONT', values);
+
     await signUp(values as User);
     redirect('/sign-in');
   }

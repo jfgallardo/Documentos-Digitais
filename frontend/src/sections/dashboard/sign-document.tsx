@@ -37,6 +37,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { useTranslations } from 'next-intl';
+import AppTooltip from '@/components/shared/app-tooltip';
 
 type Props = {
   onSign: () => void;
@@ -136,11 +137,14 @@ export function SignDocument({ onSign, document }: Props) {
 
   return (
     <Dialog>
-      <DialogTrigger asChild>
-        <Button variant='outline' size='sm' className='cursor-pointer'>
-          <IconSignature />
-        </Button>
-      </DialogTrigger>
+      <AppTooltip text={t('tooltip')}>
+        <DialogTrigger asChild>
+          <Button variant='outline' size='sm' className='cursor-pointer'>
+            <IconSignature />
+          </Button>
+        </DialogTrigger>
+      </AppTooltip>
+
       <DialogContent className='sm:max-w-md'>
         <DialogHeader>
           <DialogTitle>{document.title}</DialogTitle>

@@ -37,7 +37,8 @@
     "warning": "Aviso",
     "message": "Você está prestes a excluir este documento. Esta ação não pode ser desfeita.",
     "button_delete": "Excluir",
-    "button_cancel": "Cancelar"
+    "button_cancel": "Cancelar",
+    "tooltip": "Excluir documento"
   },
   "ListDocuments": {
     "headers": {
@@ -51,7 +52,8 @@
     "status": {
       "pending": "Pendente",
       "signed": "Assinado"
-    }
+    },
+    "tooltip": "Baixar documento"
   },
   "SignDocument": {
     "description": "Envie uma foto da sua assinatura para concluir o processo.",
@@ -61,10 +63,13 @@
     "button_sign": "Assinar",
     "button_close": "Fechar",
     "message_validation": "Você deve fornecer um arquivo ou uma assinatura, mas não ambos.",
-    "placeholder_select": "Selecione para assinar com uma das assinaturas registradas"
+    "placeholder_select": "Selecione para assinar com uma das assinaturas registradas",
+    "tooltip": "Assinar documento"
   },
   "SignaturesView": {
-    "title": "Assinaturas registradas"
+    "title": "Assinaturas registradas",
+    "title_alert": "Atenção!",
+    "title_description": "Aqui você encontra todas as assinaturas já cadastradas. As assinaturas são registradas automaticamente ao assinar um documento."
   },
   "ListSignatures": {
     "headers": {

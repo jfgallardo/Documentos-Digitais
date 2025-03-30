@@ -11,12 +11,14 @@ import {
 import { AuthProvider } from './auth.provider';
 import { AuthGuard } from './auth.guard';
 import { Request as ExpressRequest } from 'express';
+import { User } from '@core';
 
 interface JwtPayload {
   sub: string;
   username: string;
   iat: number;
   exp: number;
+  email?: string;
 }
 
 interface RequestWithUser extends ExpressRequest {
@@ -35,11 +37,17 @@ export class AuthController {
 
   @UseGuards(AuthGuard)
   @Get('profile')
-  getProfile(@Request() req: RequestWithUser) {
+  async getProfile(@Request() req: RequestWithUser) {
     const user: JwtPayload = req.user;
+    let userByEmail: User | null = null;
+
+    if (user.email) {
+      userByEmail = await this.authProvider.getUserByEmail(user.email);
+    }
+
     return {
-      id: user.sub,
-      username: user.username,
+      id: user.email ? userByEmail?.id : user.sub,
+      username: user.username || user.email,
       issuedAt: new Date(user.iat * 1000),
       expiresAt: new Date(user.exp * 1000),
     };

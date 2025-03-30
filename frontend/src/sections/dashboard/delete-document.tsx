@@ -1,4 +1,5 @@
 import { deleteDocument } from '@/actions/documents';
+import AppTooltip from '@/components/shared/app-tooltip';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -23,11 +24,14 @@ export function DeleteDocument({ onDelete, documentId }: Props) {
 
   return (
     <Dialog>
-      <DialogTrigger asChild>
-        <Button variant='outline' size='sm' className='cursor-pointer'>
-          <IconTrash />
-        </Button>
-      </DialogTrigger>
+      <AppTooltip text={t('tooltip')}>
+        <DialogTrigger asChild>
+          <Button variant='outline' size='sm' className='cursor-pointer'>
+            <IconTrash />
+          </Button>
+        </DialogTrigger>
+      </AppTooltip>
+
       <DialogContent className='sm:max-w-md'>
         <DialogHeader>
           <DialogTitle>
