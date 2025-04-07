@@ -13,6 +13,7 @@ export const signUp = async (body: User): Promise<{ message: string }> => {
   }
 };
 
+
 export const getProfile = async (): Promise<ResponseSession> => {
   try {
     const res = await axios.get(endpoints.auth.me);

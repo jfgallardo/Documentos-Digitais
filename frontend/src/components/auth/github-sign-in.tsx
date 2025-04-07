@@ -1,19 +1,31 @@
-import { signIn } from '@/lib/auth';
+'use client';
+
+import { signIn } from 'next-auth/react';
 import { Button } from '../ui/button';
 import Github from '../ui/github';
+import { useState } from 'react';
+import { IconLoader3 } from '@tabler/icons-react';
 
 export default function GithubSignIn() {
+  const [loading, setLoading] = useState(false);
   return (
-    <form
-      action={async () => {
-        'use server';
-        await signIn('github');
+    <Button
+      className='w-full cursor-pointer'
+      disabled={loading}
+      variant='outline'
+      onClick={() => {
+        try {
+          setLoading(true);
+          signIn('github');
+        } catch (error) {
+          console.error(error);
+          setLoading(false);
+        }
       }}
     >
-      <Button className='w-full' variant='outline'>
-        <Github />
-        Continue with GitHub
-      </Button>
-    </form>
+      <Github />
+      Continue with GitHub
+      {loading && <IconLoader3 className='animate-spin' />}
+    </Button>
   );
 }

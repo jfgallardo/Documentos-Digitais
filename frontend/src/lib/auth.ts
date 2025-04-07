@@ -1,7 +1,7 @@
 import NextAuth from 'next-auth';
 import GitHub from 'next-auth/providers/github';
 import Credentials from 'next-auth/providers/credentials';
-import { loginSchema } from './schema';
+import { signInSchema } from './schema';
 import jwt from 'jsonwebtoken';
 import axios, { endpoints } from '@/utils/axios';
 
@@ -13,34 +13,31 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         email: {},
         password: {},
       },
-      authorize: async (
-        credentials,
-      ): Promise<{ email: string; accessToken: string }> => {
+      authorize: async (credentials) => {
         try {
-          const validatedCredentials =
-            await loginSchema.parseAsync(credentials);
+          const { email, password } =
+            await signInSchema.parseAsync(credentials);
 
-          const response = await axios.post(
-            endpoints.auth.signIn,
-            validatedCredentials,
-          );
+          const response = await axios.post(endpoints.auth.signIn, {
+            email,
+            password,
+          });
           const { access_token } = response.data;
 
           return {
-            email: validatedCredentials.email,
+            email: email,
             accessToken: access_token,
           };
-
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        } catch (e: any) {
-          throw new Error(e.message);
+        } catch (e) {
+          console.error('Error:', e);
+          return null;
         }
       },
     }),
   ],
   pages: {
     signIn: '/sign-in',
-    error: '/sign-in',
+    error: '/error',
   },
   secret: process.env.AUTH_SECRET,
   callbacks: {
@@ -69,10 +66,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       return token;
     },
     async signIn({ user, account }) {
-      console.log('user => >>>>>>>>>>>>>>>>>>', user);
-
       if (!user?.email) return false;
-
       try {
         const response = await axios.get(endpoints.users.getUsersByQuery, {
           params: { email: user.email },
@@ -87,7 +81,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             password: user.email,
           });
         }
-
         return true;
       } catch (error) {
         console.error('Error al verificar o crear el usuario:', error);

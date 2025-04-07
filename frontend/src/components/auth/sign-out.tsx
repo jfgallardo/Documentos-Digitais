@@ -13,7 +13,7 @@ export default function SignOut() {
   const t = useTranslations('SignOut');
   return (
     <div className='flex justify-center'>
-      <Button variant='ghost' onClick={handleSignOut}>
+      <Button variant='ghost' onClick={handleSignOut} className='cursor-pointer'>
         {t('label')}
         <IconLogout2 />
       </Button>
