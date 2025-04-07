@@ -9,13 +9,14 @@ import {
 import { SignDocument } from './sign-document';
 import { Document } from '@core';
 import { Button } from '@/components/ui/button';
-import { IconDownload } from '@tabler/icons-react';
+import { IconDownload, IconEye } from '@tabler/icons-react';
 import { fDate } from '@/utils/format-time';
 import { Badge } from '@/components/ui/badge';
 import { downloadDocument } from '@/actions/documents';
 import { DeleteDocument } from './delete-document';
 import { useTranslations } from 'next-intl';
 import AppTooltip from '@/components/shared/app-tooltip';
+import { useRouter } from 'next/navigation';
 
 type Props = {
   documents: Document[] | null;
@@ -24,6 +25,7 @@ type Props = {
 
 export default function ListDocuments({ documents, onReset }: Props) {
   const t = useTranslations('ListDocuments');
+  const router = useRouter();
 
   const handleDownload = async (id: string) => {
     const response = await downloadDocument(id);
@@ -35,6 +37,10 @@ export default function ListDocuments({ documents, onReset }: Props) {
     a.click();
 
     window.URL.revokeObjectURL(url);
+  };
+
+  const handleView = async (id: string) => {
+    router.push(`/dashboard/document/${id}`);
   };
 
   return (
@@ -52,7 +58,7 @@ export default function ListDocuments({ documents, onReset }: Props) {
             <TableHead className='w-[100px] text-right'>
               {t('headers.updated')}
             </TableHead>
-            <TableHead className='w-[200px] text-right'>
+            <TableHead className='w-[200px] text-center'>
               {t('headers.actions')}
             </TableHead>
           </TableRow>
@@ -112,6 +118,16 @@ export default function ListDocuments({ documents, onReset }: Props) {
                         onClick={() => handleDownload(document.id)}
                       >
                         <IconDownload />
+                      </Button>
+                    </AppTooltip>
+                    <AppTooltip text={t('tooltip-eye')}>
+                      <Button
+                        variant='outline'
+                        size='sm'
+                        className='cursor-pointer'
+                        onClick={() => handleView(document.id)}
+                      >
+                        <IconEye />
                       </Button>
                     </AppTooltip>
                   </TableCell>

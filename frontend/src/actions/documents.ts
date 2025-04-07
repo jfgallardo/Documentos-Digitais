@@ -24,11 +24,11 @@ export const deleteDocument = async (id: string): Promise<void> => {
 };
 
 export const downloadDocument = async (id: string): Promise<Blob> => {
-  try {
+  try {    
     const res = await axios.get(endpoints.documents.download(id), {
       responseType: 'blob',
     });
-
+    
     return res.data;
   } catch (error) {
     console.error('Error download document:', error);

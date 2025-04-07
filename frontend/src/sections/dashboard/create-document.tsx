@@ -24,8 +24,9 @@ import {
   FormMessage,
 } from '../../components/ui/form';
 import { uploadDocument } from '@/actions/documents';
-import { useDashboardContext } from './hook/use-dashboard-context';
 import { useTranslations } from 'next-intl';
+import { IconLoader3, IconUpload } from '@tabler/icons-react';
+import { useState } from 'react';
 
 type Props = {
   ownerId: string;
@@ -33,8 +34,8 @@ type Props = {
 };
 
 export function CreateDocument({ ownerId, onUpload }: Props) {
-  const { loadingDocuments } = useDashboardContext();
   const t = useTranslations('CreateDocument');
+  const [loading, setLoading] = useState(false);
 
   const formSchema = z.object({
     file: z.custom<File | string | null>().transform((data, ctx) => {
@@ -63,16 +64,21 @@ export function CreateDocument({ ownerId, onUpload }: Props) {
   const { setValue } = form;
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    const formData = new FormData();
-    const file: File = values.file as File;
+    try {
+      setLoading(true);
+      const formData = new FormData();
+      const file: File = values.file as File;
 
-    formData.append('file', file);
-    formData.append('title', file.name);
-    formData.append('status', 'pending');
-    formData.append('ownerId', ownerId);
+      formData.append('file', file);
+      formData.append('title', file.name);
+      formData.append('status', 'pending');
+      formData.append('ownerId', ownerId);
 
-    await uploadDocument(formData);
-    onUpload();
+      await uploadDocument(formData);
+      onUpload();
+    } finally {
+      setLoading(false);
+    }
   }
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -83,7 +89,7 @@ export function CreateDocument({ ownerId, onUpload }: Props) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant='default' size={'sm'}>
+        <Button variant='default' size={'sm'} className='cursor-pointer'>
           <span className='flex items-center justify-center'>
             <svg
               xmlns='http://www.w3.org/2000/svg'
@@ -139,9 +145,15 @@ export function CreateDocument({ ownerId, onUpload }: Props) {
                 <Button
                   type='submit'
                   variant='outline'
-                  disabled={loadingDocuments}
+                  className='cursor-pointer'
+                  disabled={loading}
                 >
                   {t('button_upload')}
+                  {loading ? (
+                    <IconLoader3 className='animate-spin' />
+                  ) : (
+                    <IconUpload />
+                  )}
                 </Button>
               </div>
             </DialogFooter>

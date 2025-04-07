@@ -53,7 +53,8 @@
       "pending": "Pendente",
       "signed": "Assinado"
     },
-    "tooltip": "Baixar documento"
+    "tooltip": "Baixar documento",
+    "tooltip-eye": "Ver documento"
   },
   "SignDocument": {
     "description": "Envie uma foto da sua assinatura para concluir o processo.",
