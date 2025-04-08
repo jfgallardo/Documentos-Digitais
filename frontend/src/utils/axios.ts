@@ -75,6 +75,7 @@ export const endpoints = {
   signatures: {
     create: '/signatures/create',
     getByOwner: (owner: string) => `/signatures/user/${owner}`,
+    download: (id: string) => `/signatures/download/${id}`,
   },
   users: {
     getUsersByQuery: '/users',

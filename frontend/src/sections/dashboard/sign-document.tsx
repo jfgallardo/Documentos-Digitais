@@ -10,7 +10,12 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
-import { IconEraser, IconScan, IconSignature } from '@tabler/icons-react';
+import {
+  IconEraser,
+  IconLoader3,
+  IconScan,
+  IconSignature,
+} from '@tabler/icons-react';
 import {
   Form,
   FormControl,
@@ -52,6 +57,7 @@ enum SignType {
 export function SignDocument({ onSign, document }: Props) {
   const { user } = useAuthContext();
   const { signatures, getSignatures } = useSignaturesContext();
+  const [loading, setLoading] = useState(false);
   const t = useTranslations('SignDocument');
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -113,6 +119,7 @@ export function SignDocument({ onSign, document }: Props) {
   const signValue = form.watch('sign');
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    setLoading(true);
     const formData = new FormData();
     const file: File = values.file as File;
 
@@ -121,6 +128,7 @@ export function SignDocument({ onSign, document }: Props) {
     formData.append('signerId', user?.id as string);
 
     await signDocument(formData, values.sign ? values.sign : undefined);
+    setLoading(false);
     onSign();
   }
 
@@ -136,7 +144,7 @@ export function SignDocument({ onSign, document }: Props) {
   };
 
   return (
-    <Dialog>
+    <Dialog onOpenChange={() => form.reset()}>
       <AppTooltip text={t('tooltip')}>
         <DialogTrigger asChild>
           <Button variant='outline' size='sm' className='cursor-pointer'>
@@ -175,7 +183,12 @@ export function SignDocument({ onSign, document }: Props) {
                             onChange={handleFileChange}
                             className='hidden'
                           />
-                          <Button onClick={handleButtonClick} type='button'>
+                          <Button
+                            onClick={handleButtonClick}
+                            type='button'
+                            className='cursor-pointer'
+                            variant='secondary'
+                          >
                             <IconScan />
                             {t('file')}
                           </Button>
@@ -256,12 +269,22 @@ export function SignDocument({ onSign, document }: Props) {
             <DialogFooter>
               <div className='flex w-full justify-end gap-2'>
                 <DialogClose asChild>
-                  <Button type='button' variant='default'>
+                  <Button
+                    type='button'
+                    variant='default'
+                    className='cursor-pointer'
+                  >
                     {t('button_close')}
                   </Button>
                 </DialogClose>
-                <Button type='submit' variant='outline'>
+                <Button
+                  type='submit'
+                  variant='outline'
+                  className='cursor-pointer'
+                  disabled={loading}
+                >
                   {t('button_sign')}
+                  {loading && <IconLoader3 className='animate-spin' />}
                 </Button>
               </div>
             </DialogFooter>

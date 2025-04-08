@@ -145,4 +145,22 @@ export class SignaturesProvider {
         return 'Desconocido';
     }
   }
+
+  async downloadPicture(id: string): Promise<string> {
+    const signature = await this.prisma.signature.findUnique({
+      where: { id },
+    });
+
+    if (!signature || !signature.signatureUrl) {
+      throw new NotFoundException('Signature not found');
+    }
+
+    const filePath = signature.signatureUrl;
+
+    if (!fs.existsSync(filePath)) {
+      throw new NotFoundException('El archivo no existe en el servidor');
+    }
+
+    return filePath;
+  }
 }

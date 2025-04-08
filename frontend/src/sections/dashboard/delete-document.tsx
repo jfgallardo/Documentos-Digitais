@@ -11,8 +11,13 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
-import { IconMessageExclamation, IconTrash } from '@tabler/icons-react';
+import {
+  IconLoader3,
+  IconMessageExclamation,
+  IconTrash,
+} from '@tabler/icons-react';
 import { useTranslations } from 'next-intl';
+import { useState } from 'react';
 
 type Props = {
   onDelete: () => void;
@@ -21,6 +26,7 @@ type Props = {
 
 export function DeleteDocument({ onDelete, documentId }: Props) {
   const t = useTranslations('DeleteDocument');
+  const [loading, setLoading] = useState(false);
 
   return (
     <Dialog>
@@ -48,19 +54,28 @@ export function DeleteDocument({ onDelete, documentId }: Props) {
         <DialogFooter>
           <div className='flex w-full justify-end gap-2'>
             <DialogClose asChild>
-              <Button type='button' variant='default'>
+              <Button
+                type='button'
+                variant='default'
+                className='cursor-pointer'
+              >
                 {t('button_cancel')}
               </Button>
             </DialogClose>
             <Button
               type='button'
               variant='outline'
+              className='cursor-pointer'
+              disabled={loading}
               onClick={async () => {
+                setLoading(true);
                 await deleteDocument(documentId);
                 onDelete();
+                setLoading(false);
               }}
             >
               {t('button_delete')}
+              {loading && <IconLoader3 className='animate-spin' />}
             </Button>
           </div>
         </DialogFooter>

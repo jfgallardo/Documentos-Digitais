@@ -11,6 +11,7 @@ import { Signature } from '@core';
 import { IconFileTypePdf } from '@tabler/icons-react';
 import { useTranslations } from 'next-intl';
 import { Document } from '@core';
+import AppViewSignature from '@/components/shared/app-view-signature';
 
 type Props = {
   signatures: Signature[] | null;
@@ -31,7 +32,7 @@ export default function ListSignatures({ signatures }: Props) {
             <TableHead className='w-[100px] text-center'>
               {t('headers.signed_documents')}
             </TableHead>
-            <TableHead className='w-[100px] text-right'>Url</TableHead>
+            <TableHead className='w-[150px] text-center'>Picture</TableHead>
             <TableHead className='w-[100px] text-right'>
               {t('headers.signed_at')}
             </TableHead>
@@ -72,8 +73,8 @@ export default function ListSignatures({ signatures }: Props) {
                     )}
                   </TableCell>
 
-                  <TableCell className='text-right'>
-                    {signature.signatureUrl}
+                  <TableCell align='center'>
+                    <AppViewSignature idSignature={signature.id} />
                   </TableCell>
                   <TableCell className='text-right'>
                     {fDate(signature.signedAt)}
