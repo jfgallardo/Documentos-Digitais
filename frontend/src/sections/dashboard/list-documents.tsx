@@ -9,7 +9,7 @@ import {
 import { SignDocument } from './sign-document';
 import { Document } from '@core';
 import { Button } from '@/components/ui/button';
-import { IconDownload, IconEye } from '@tabler/icons-react';
+import { IconDownload, IconEye, IconFileTypePdf } from '@tabler/icons-react';
 import { fDate } from '@/utils/format-time';
 import { Badge } from '@/components/ui/badge';
 import { downloadDocument } from '@/actions/documents';
@@ -75,7 +75,8 @@ export default function ListDocuments({ documents, onReset }: Props) {
             <>
               {documents?.map((document) => (
                 <TableRow key={document.id}>
-                  <TableCell className='font-medium'>
+                  <TableCell className='font-medium flex items-center justify-start gap-2.5'>
+                    <IconFileTypePdf />
                     {document.title}
                   </TableCell>
                   <TableCell className='text-center'>

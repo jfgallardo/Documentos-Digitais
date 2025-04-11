@@ -61,7 +61,11 @@ const SignInForm = () => {
 
   const onSubmit = async (data: z.infer<typeof signInSchema>) => {
     setLoading(true);
-    signIn('credentials', data, { redirectTo: '/dashboard' });
+    await signIn('credentials', {
+      ...data,
+      callbackUrl: '/dashboard',
+      redirect: true,
+    });
   };
 
   return (

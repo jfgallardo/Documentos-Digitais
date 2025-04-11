@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Post, Query, UseGuards } from '@nestjs/common';
-import { UsersProvider } from './users.provider';
+import { PublicUser, UsersProvider } from './users.provider';
 import { User } from '@core';
 import { AuthGuard } from 'src/auth/auth.guard';
 
@@ -8,13 +8,15 @@ export class UsersController {
   constructor(private readonly usersProvider: UsersProvider) {}
 
   @Get()
-  async getUsersByQuery(@Query() query: Record<string, any>): Promise<any[]> {
+  async getUsersByQuery(
+    @Query() query: Record<string, any>,
+  ): Promise<PublicUser[]> {
     return this.usersProvider.getUsersByQuery(query);
   }
 
   @UseGuards(AuthGuard)
   @Get(':id')
-  async getById(@Body() id: string): Promise<User | null> {
+  async getById(@Body() id: string): Promise<PublicUser | null> {
     return this.usersProvider.getById(id);
   }
 

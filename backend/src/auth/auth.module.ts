@@ -3,15 +3,15 @@ import { DbModule } from 'src/db/db.module';
 import { AuthProvider } from './auth.provider';
 import { AuthController } from './auth.controller';
 import { JwtModule } from '@nestjs/jwt';
-import { jwtConstants } from './constants';
+import { UsersModule } from 'src/users/users.module';
 
 @Module({
   imports: [
     DbModule,
+    UsersModule,
     JwtModule.register({
       global: true,
-      secret: jwtConstants.secret,
-      signOptions: { expiresIn: '1h', algorithm: 'HS256' },
+      signOptions: { algorithm: 'HS256' },
     }),
   ],
   providers: [AuthProvider],

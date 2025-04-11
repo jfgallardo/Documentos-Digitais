@@ -16,7 +16,7 @@ export default function GithubSignIn() {
       onClick={() => {
         try {
           setLoading(true);
-          signIn('github');
+          signIn('github', { callbackUrl: '/dashboard', redirect: true });
         } catch (error) {
           console.error(error);
           setLoading(false);

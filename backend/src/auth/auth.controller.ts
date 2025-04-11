@@ -5,13 +5,17 @@ import {
   HttpCode,
   HttpStatus,
   Post,
+  Req,
   Request,
+  Res,
+  UnauthorizedException,
   UseGuards,
 } from '@nestjs/common';
 import { AuthProvider } from './auth.provider';
 import { AuthGuard } from './auth.guard';
 import { Request as ExpressRequest } from 'express';
 import { User } from '@core';
+import { Response } from 'express';
 
 interface JwtPayload {
   sub: string;
@@ -19,6 +23,10 @@ interface JwtPayload {
   iat: number;
   exp: number;
   email?: string;
+}
+
+interface RequestWithCookies extends ExpressRequest {
+  cookies: { [key: string]: string };
 }
 
 interface RequestWithUser extends ExpressRequest {
@@ -31,8 +39,34 @@ export class AuthController {
 
   @HttpCode(HttpStatus.OK)
   @Post('login')
-  signIn(@Body() signInDto: Record<string, string>) {
-    return this.authProvider.signIn(signInDto.email, signInDto.password);
+  async signIn(
+    @Body() signInDto: Record<string, string>,
+    @Res({ passthrough: true }) res: Response,
+  ) {
+    const { access_token, refresh_token } = await this.authProvider.signIn(
+      signInDto.email,
+      signInDto.password,
+    );
+
+    res.cookie('refresh_token', refresh_token, {
+      httpOnly: true,
+      secure: false,
+      sameSite: 'strict',
+      path: '/',
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+    });
+
+    return { access_token };
+  }
+
+  @Post('refresh')
+  async refresh(@Req() req: RequestWithCookies, @Res() res: Response) {
+    const refreshToken: string = req.cookies['refresh_token'];
+
+    if (!refreshToken) throw new UnauthorizedException();
+
+    const { access_token } = await this.authProvider.refreshToken(refreshToken);
+    return res.json({ access_token });
   }
 
   @UseGuards(AuthGuard)

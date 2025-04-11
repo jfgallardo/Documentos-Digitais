@@ -7,6 +7,7 @@ import { getSession } from 'next-auth/react';
 
 interface CustomSession extends Session {
   access_token?: string;
+  access_token_expires?: number;
 }
 
 // ----------------------------------------------------------------------

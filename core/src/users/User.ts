@@ -4,7 +4,8 @@ export default interface User {
   email: string;
   password: string;
   provider: string;
-  image?: string;
+  image: string | null;
+  refreshToken?: string;
   createdAt: Date;
   updatedAt: Date;
 }

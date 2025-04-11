@@ -14,16 +14,17 @@ datasource db {
 }
 
 model User {
-  id         String      @id @default(auto()) @map("_id") @db.ObjectId
-  name       String
-  email      String      @unique
-  password   String
-  provider   String      @default("credentials")
-  image      String?
-  createdAt  DateTime    @default(now())
-  updatedAt  DateTime    @updatedAt
-  documents  Document[]
-  signatures Signature[]
+  id            String      @id @default(auto()) @map("_id") @db.ObjectId
+  name          String
+  email         String      @unique
+  password      String
+  provider      String      @default("credentials")
+  image         String?
+  refreshtoken String?
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  documents     Document[]
+  signatures    Signature[]
 
   @@map("users")
 }
